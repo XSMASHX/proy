@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}Historial{% endblock %}
+
+{% block content %}
+<h2>Historial de Órdenes</h2>
+<ul>
+    {% if ordenes %}
+        {% for orden in ordenes %}
+        <li>
+            <p>ID de Orden: {{ orden.id }}</p>
+            <p>Habitación: {{ orden.habitacion_id }}</p>
+            <p>Usuario: {{ orden.usuario_id }}</p>
+            <p>Estado: {{ orden.estado }}</p>
+        </li>
+        {% endfor %}
+    {% else %}
+        <p>No hay órdenes disponibles.</p>
+    {% endif %}
+</ul>
+{% endblock %}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Hotel Gestor{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Hotel Gestor</h1>
+        {% if current_user.is_authenticated %}
+        <div class="user-info">
+            <img src="{{ url_for('static', filename=current_user.photo) }}" alt="{{ current_user.fullname }}">
+            <span>{{ current_user.fullname }}</span>
+        </div>
+        {% endif %}
+    </header>
+    {% if current_user.is_authenticated %}
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('habitaciones') }}">Habitaciones</a></li>
+                <li><a href="{{ url_for('configuracion') }}">Configuración</a></li>
+                <li><a href="{{ url_for('historial') }}">Historial</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+    <div class="main">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
